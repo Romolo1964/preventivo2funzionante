@@ -17,10 +17,14 @@
             border: 2px solid #ccc; /* Spessore del bordo */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per dare profondità */
             background-color: rgba(255, 255, 255, 0.8); /* Colore di sfondo della card con trasparenza */
+            padding: 60px;
         }
     </style>
 </head>
 <body>
+<div th:insert="fragments/header :: block-header"></div>
+
+<div style="margin-top: 30px"></div>
    <!-- Seleziona un utente e crea un preventivo -->
 <div class="col-md-6">
     <!-- Card personalizzata con sfondo e ombra -->

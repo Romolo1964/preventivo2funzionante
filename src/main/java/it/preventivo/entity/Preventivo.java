@@ -1,7 +1,9 @@
 package it.preventivo.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,30 +29,76 @@ public class Preventivo {
 
     private double totale;
 
+    // Usa l'enumerazione per definire lo stato
     @Enumerated(EnumType.STRING)
     private StatoPreventivo stato;
 
     @OneToMany(mappedBy = "preventivo")
     private List<LavorazioniPreventivo> lavorazioni;
+    
+    // Aggiungi la proprietà 'dataCreazione'
+    @Column(name = "data_creazione")
+    private LocalDateTime dataCreazione;
 
-    // Getters e Setters
+    public LocalDateTime getDataCreazione() {
+		return dataCreazione;
+	}
 
-    public enum StatoPreventivo {
-        CREATO, ACCETTATO, RIFIUTATO
+	public void setDataCreazione(LocalDateTime dataCreazione) {
+		this.dataCreazione = dataCreazione;
+	}
+
+	public Preventivo() {
+        super();
     }
 
-	public void setUtente(Utente utente2) {
-		// TODO Auto-generated method stub
-		
-	}
+    public Preventivo(Long id, Utente utente, double totale, StatoPreventivo stato, List<LavorazioniPreventivo> lavorazioni) {
+        this.id = id;
+        this.utente = utente;
+        this.totale = totale;
+        this.stato = stato;
+        this.lavorazioni = lavorazioni;
+    }
 
-	public void setStato(StatoPreventivo creato) {
-		// TODO Auto-generated method stub
-		
-	}
+    // Getter e Setter
 
-	public void setTotale(double totale2) {
-		// TODO Auto-generated method stub
-		
-	}
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public double getTotale() {
+        return totale;
+    }
+
+    public void setTotale(double totale) {
+        this.totale = totale;
+    }
+
+    public StatoPreventivo getStato() {
+        return stato;
+    }
+
+    public void setStato(StatoPreventivo stato) {
+        this.stato = stato;
+    }
+
+    public List<LavorazioniPreventivo> getLavorazioni() {
+        return lavorazioni;
+    }
+
+    public void setLavorazioni(List<LavorazioniPreventivo> lavorazioni) {
+        this.lavorazioni = lavorazioni;
+    }
 }

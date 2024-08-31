@@ -29,8 +29,8 @@ public class LavoriElettrici implements Serializable {
 	@Column(name = "descrizione", columnDefinition = "LONGTEXT")
 	private String descrizione;
 
-	@Lob
-	private String prezzo;
+	//@Lob
+	private double prezzo;
 
 	@Lob
 	@Column(name="quantita_misura_pezzi")
@@ -66,11 +66,11 @@ public class LavoriElettrici implements Serializable {
 		this.descrizione = descrizione;
 	}
 
-	public String getPrezzo() {
+	public double getPrezzo() {
 		return this.prezzo;
 	}
 
-	public void setPrezzo(String prezzo) {
+	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
 

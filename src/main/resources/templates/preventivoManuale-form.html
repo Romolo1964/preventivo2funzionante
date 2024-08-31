@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuovo Preventivo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Nuovo Preventivo</h2>
+    
+    <form th:action="@{/preventivi}" th:object="${preventivo}" method="post">
+        <div class="card">
+            <div class="card-body">
+                <!-- Campo Utente -->
+                <div class="form-group">
+                    <label for="utente">Utente</label>
+                    <select id="utente" class="form-control" th:field="*{utente}" required>
+                        <option value="" disabled selected>Seleziona Utente</option>
+                        <option th:each="utente : ${utenti}" th:value="${utente}" th:text="${utente.nome}"></option>
+                    </select>
+                </div>
+                
+                <!-- Campo Totale -->
+                <div class="form-group">
+                    <label for="totale">Totale (€)</label>
+                    <input type="number" id="totale" class="form-control" th:field="*{totale}" step="0.01" min="0" required />
+                </div>
+                
+                <!-- Campo Stato -->
+                <div class="form-group">
+                    <label for="stato">Stato</label>
+                    <select id="stato" class="form-control" th:field="*{stato}" required>
+                        <option value="" disabled selected>Seleziona Stato</option>
+                        <option th:each="stato : ${stati}" th:value="${stato}" th:text="${stato}"></option>
+                    </select>
+                </div>
+                
+                <!-- Campo Data di Creazione -->
+                <div class="form-group">
+                    <label for="dataCreazione">Data di Creazione</label>
+                    <input type="date" id="dataCreazione" class="form-control" th:field="*{dataCreazione}" required />
+                </div>
+                
+                <!-- Campo Lavorazioni -->
+                <div class="form-group">
+                    <label for="lavorazioni">Lavorazioni (separate da virgola)</label>
+                    <input type="text" id="lavorazioni" class="form-control" th:field="*{lavorazioni}" placeholder="Descrizione - Prezzo" />
+                </div>
+                
+                <!-- Pulsante di Invio -->
+                <button type="submit" class="btn btn-primary">Salva Preventivo</button>
+                <a href="/preventivi" class="btn btn-secondary">Annulla</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

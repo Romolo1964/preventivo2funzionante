@@ -16,7 +16,7 @@ import it.preventivo.service.LavoriElettriciServiceImpl;
 import it.preventivo.service.LavoriManutenzioneService;
 import it.preventivo.service.LavoriRestauroService;
 import it.preventivo.service.LavoriTecnologiciService;
-import it.preventivo.service.PreventivoService;
+import it.preventivo.service.PreventivoServiceNOOOO;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +65,7 @@ public class PreventivoController {
     private LavoriRestauroService lavoriRestauroService;
     
     @Autowired
-    private PreventivoService preventivoService;
+    private PreventivoServiceNOOOO preventivoService;
     
     @GetMapping("/selezionaUtente")
     public String selezionaUtente(Model model) {

@@ -1,72 +1,30 @@
 package it.preventivo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import it.preventivo.entity.Lavorazione;
-import it.preventivo.entity.LavorazioniPreventivo;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import it.preventivo.entity.Preventivo;
 import it.preventivo.entity.Utente;
-import it.preventivo.repository.LavorazioneRepository;
-import it.preventivo.repository.LavorazioniPreventivoRepository;
-import it.preventivo.repository.PreventivoRepository;
-import it.preventivo.repository.UtenteRepository;
+//import it.preventivo.entity.StatoPreventivo;
 
-import java.util.List;
+public interface PreventivoService {
 
-@Service
-public class PreventivoService {
+    // Metodi CRUD di base
+    Preventivo savePreventivo(Preventivo preventivo);
+    Preventivo getPreventivoById(Long id);
+    List<Preventivo> getAllPreventivi();
+    void deletePreventivo(Long id);
 
-    @Autowired
-    private UtenteRepository utenteRepository;
-
-    @Autowired
-    private PreventivoRepository preventivoRepository;
-
-    @Autowired
-    private LavorazioneRepository lavorazioneRepository;
-
-    @Autowired
-    private LavorazioniPreventivoRepository lavorazioniPreventivoRepository;
-
-    @Transactional
-    public Preventivo creaPreventivo(Long utenteId, List<Long> idLavorazioni) {
-        Utente utente = utenteRepository.findById(utenteId)
-                .orElseThrow(() -> new RuntimeException("Utente non trovato"));
-
-        Preventivo preventivo = new Preventivo();
-        preventivo.setUtente(utente);
-        preventivo.setStato(Preventivo.StatoPreventivo.CREATO);
-
-        double totale = 0.0;
-        
-        // Gestisci le lavorazioni selezionate
-        for (Long idLavorazione : idLavorazioni) {
-            Lavorazione lavorazione = lavorazioneRepository.findById(idLavorazione)
-                    .orElseThrow(() -> new RuntimeException("Lavorazione non trovata"));
-
-            LavorazioniPreventivo lavorazioniPreventivo = new LavorazioniPreventivo();
-            lavorazioniPreventivo.setPreventivo(preventivo);
-            lavorazioniPreventivo.setLavorazione(lavorazione);
-            lavorazioniPreventivo.setCosto(lavorazione.getCosto());
-            lavorazioniPreventivoRepository.save(lavorazioniPreventivo);
-
-            totale += lavorazione.getCosto();
-        }
-
-        preventivo.setTotale(totale);
-        return preventivoRepository.save(preventivo);
-    }
-
-    public Preventivo accettaPreventivo(Long preventivoId) {
-        Preventivo preventivo = preventivoRepository.findById(preventivoId)
-                .orElseThrow(() -> new RuntimeException("Preventivo non trovato"));
-
-        preventivo.setStato(Preventivo.StatoPreventivo.ACCETTATO);
-        return preventivoRepository.save(preventivo);
-    }
+    // Metodi di ricerca personalizzati
+    List<Preventivo> getPreventiviByUtente(Utente utente);
+   // List<Preventivo> getPreventiviByStato(StatoPreventivo stato);
+    List<Preventivo> getPreventiviByTotaleGreaterThan(double totale);
+    List<Preventivo> getPreventiviByTotaleLessThan(double totale);
+    
+ // Nuovi metodi
+    Preventivo updatePreventivo(Long id, Preventivo preventivo); // Aggiorna un preventivo
+   // long countPreventiviByStato(StatoPreventivo stato); // Conta i preventivi per stato
+    List<Preventivo> getPreventiviOrderByTotaleDesc(); // Ottieni preventivi ordinati per totale
+    List<Preventivo> getPreventiviByDateRange(LocalDate startDate, LocalDate endDate); // Filtra per intervallo di date
+	List<Preventivo> findPreventiviByDateRange(LocalDateTime startDate, LocalDateTime endDate);
 }
-
-
-
