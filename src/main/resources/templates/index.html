@@ -34,8 +34,8 @@
     </style>
 </head>
 <body>
-
-   <div th:insert="fragments/header :: block-header"></div>
+	<!-- Inclusione del frammento usando la nuova sintassi -->
+   <div th:insert="~{fragments/header :: block-header}"></div>
     
     <div class="container container-custom text-center">
     <h1>Benvenuto nel Sistema di Preventivi</h1>
@@ -85,7 +85,7 @@
 </div>
 
 
-<div th:insert="fragments/footer :: footer"></div>
+<div th:insert="~{fragments/footer :: footer}"></div>
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
