@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home - Preventivo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+     <style>
+        .rounded-btn {
+            border-radius: 50px;
+            border: 3px solid black;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"></a>
+    <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <!--
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/preventivo/create}">Creazione Preventivo</a>
+            </li>
+            -->
+             <li class="nav-item">
+                    <button class="btn btn-primary rounded-btn" onclick="window.location.href='/utenti'">Lista Utenti</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-success rounded-btn" onclick="window.location.href='/utenti/new'">Registrazione Utente</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger rounded-btn" onclick="window.location.href='/lavori-elettrici'">Lavori Elettrici</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-warning rounded-btn" onclick="window.location.href='/lavori-edili'">Lavori Edili</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-info rounded-btn" onclick="window.location.href='/lavoriManutenzione'">Lavori di Manutenzione</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-secondary rounded-btn" onclick="window.location.href='/lavoriRestauro'">Lavori di Restauro</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-dark rounded-btn" onclick="window.location.href='/lavoriTecnologici/list'">Lavori Tecnologici</button>
+                </li>
+        </ul>
+    </div>
+</nav>
+
+    
+    
+    <div class="container mt-5">
+        <h1>Benvenuto nel Sistema di Preventivi</h1>
+        <p>Utilizza la barra di navigazione per accedere alle diverse sezioni.</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

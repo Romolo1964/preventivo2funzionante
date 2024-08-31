@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Utenti</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .table thead th {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom {
+            border-radius: 50px;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+        .btn-primary-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary-custom:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-secondary-custom {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary-custom:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        .btn-danger-custom {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger-custom:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="fragments/header :: block-header"></div>
+     
+    <div class="container">
+        <h1 class="my-4 text-center">Lista degli Utenti Registrati</h1>
+        <div class="text-right mb-3" style="display: flex; justify-content: center;">
+            <a th:href="@{/utenti/new}" class="btn btn-primary btn-custom" style="border-color: green;border-width: 5px;">Nuovo Utente</a>
+            <a th:href="@{/}" class="btn btn-primary btn-custom" style="background-color: #800080; border-color: black;border-width: 5px;">INDEX</a>
+
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Email</th>
+                    <th>Data di Nascita</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="utente : ${utenti}">
+                    <td th:text="${utente.idutente}">1</td>
+                    <td th:text="${utente.nome}">Nome</td>
+                    <td th:text="${utente.cognome}">Cognome</td>
+                    <td th:text="${utente.email}">email@example.com</td>
+                    <td th:text="${#dates.format(utente.dataDiNascita, 'dd/MM/yyyy')}">01/01/2000</td>
+                    <td>
+                    <!-- th:href="@{/utenti/edit/{id}(id=${utente.idutente})}": Questa è un'espressione di Thymeleaf. 
+                    Il prefisso th: indica a Thymeleaf di elaborare questo attributo.
+                    @{/utenti/edit/{id}(id=${utente.idutente})}: Questa parte crea un URL dinamico.
+                    /utenti/edit/{id}: Definisce il pattern dell'URL,
+                    dove {id} è un segnaposto che verrà sostituito con il valore specificato.
+                    (id=${utente.idutente}): Questa è un'espressione di Thymeleaf che sostituisce {id} con il valore della proprietà idutente dell'oggetto utente.  
+                    Quindi, se utente.idutente vale 123, l'URL risultante sarà /utenti/edit/123.
+                     -->
+                        <a th:href="@{/utenti/edit/{id}(id=${utente.idutente})}" class="btn btn-primary-custom btn-sm">Modifica</a>
+                        <a th:href="@{/utenti/delete/{id}(id=${utente.idutente})}" class="btn btn-danger-custom btn-sm">Elimina</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

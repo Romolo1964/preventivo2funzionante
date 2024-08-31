@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:fragment="block-header">
+		<nav class="navbar navbar-expand-lg navbar-light"
+			style="background-color: #f8f9fa;">
+			<div class="header-logo">
+				<a class="navbar-brand" href="#"> <img th:src="@{/img/logo.png}"
+					alt="Logo" class="img-fluid"
+					style="max-width: 50px; margin-right: 10px;">FR
+				</a>
+			</div>
+			
+			<div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+						<button class="btn btn-primary btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/preventivo/selezionaUtente'">PREVENTIVO</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-primary btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/utenti'">Lista Utenti</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-success btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/utenti/new'">Registrazione
+							Utente</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-danger btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavori-elettrici'">Lavori
+							Elettrici</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-warning btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavori-edili'">Lavori
+							Edili</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-info btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavoriManutenzione'">Lavori
+							di Manutenzione</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-secondary btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavoriRestauro'">Lavori
+							di Restauro</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-dark btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavoriTecnologici/list'">Lavori
+							Tecnologici</button>
+					</li>
+				</ul>
+			</div>
+
+
+<!--  
+			<div class="form-group blu-margin">
+				<select th:field="${utente.idutente}"
+					id="dropUtente"
+					onchange="location.href='/utenti/' + this.value;">
+					<option value="1">Seleziona utente</option>
+					<option th:each="utente : ${utenti}"
+						 th:value="${utente.idutente}"
+						 th:text="${utente.nome}" 
+						 
+						 
+						 ></option>
+						
+				</select>
+			</div>
+			
+-->
+			
+			<!-- DropList 
+			<div class="form-group blu-margin">
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"
+						style="border-radius: 25px; border: 2px solid black;">
+						Seleziona utente Button</button>
+					<div th:each="utente : ${utenti}">
+						<a class="dropdown-item"
+							th:href="@{/utenti/{id}(id=${utente.idutente})}"
+							th:text="${utente.nome}"></a>
+					</div>
+				</div>
+			</div>
+			-->
+	<!--  		
+ <div class="form-group blu-margin">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Seleziona utente3
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <option th:each="utente : ${utenti}"
+						 th:value="${utente.idutente}"
+						 th:text="${utente.nome}" 
+						 
+						 
+						 >
+            <a th:each="utente : ${utenti}"
+               th:href="@{/utenti/{id}(id=${utente.idutente})}"
+               class="dropdown-item"
+               th:text="${utente.nome}">
+            </a>
+        </div>
+    </div>
+</div>
+ -->
+		</nav>
+
+
+
+	</header>
+
+</body>
+</html>

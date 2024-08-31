@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli Utente</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ff2b40;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-top: 20px;
+            border-radius: 35px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .card-text strong {
+            width: 150px;
+            display: inline-block;
+        }
+        .btn-primary {
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Dettagli Utente</h2>
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0" th:text="${utente.nome} + ' ' + ${utente.cognome}"></h5>
+            </div>
+            <div class="card-body" >
+                <p class="card-text"><strong>ID:</strong> <span th:text="${utente.idutente}"></span></p>
+                <p class="card-text"><strong>Email:</strong> <span th:text="${utente.email}"></span></p>
+                <p class="card-text"><strong>Data di Nascita:</strong> <span th:text="${utente.dataDiNascita}"></span></p>
+                 <p class="card-text"><strong>Creato Il:</strong> <span th:text="${utente.creatoIl}"></span></p>
+                <p class="card-text"><strong>Modificato Il:</strong> <span th:text="${utente.modificatoIl}"></span></p>
+                <p class="card-text"><strong>Categoria Lavori:</strong> <span th:text="${utente.categoriaLavoriId}"></span></p>
+                <a href="/utenti" class="btn btn-primary">Torna alla Lista</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

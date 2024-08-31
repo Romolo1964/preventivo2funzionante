@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizza Preventivo</title>
+</head>
+<body>
+    <h1>Preventivo per <span th:text="${utente.nome}"></span></h1>
+    <h2>Tipo di lavoro <span th:text="${tipoLavoro}"></span></h2>
+    
+    <p>Stampa un'arrey di Id dei valori selezionati >> <span th:text="${idLavorazioni}"></span></p>
+    
+    <p th:text="${idLavorazioni}"></p>
+    
+    <form action="/preventivo/accetta" method="post">
+        <input type="hidden" name="idLavorazioni" th:value="${idLavorazioni}">
+        <button type="submit">Accetta Preventivo</button>
+    </form>
+</body>
+</html>

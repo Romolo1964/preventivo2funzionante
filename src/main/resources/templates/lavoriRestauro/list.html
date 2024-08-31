@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Lavori di Restauro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="fragments/header :: block-header"></div>
+    <div class="container">
+        <h1 class="mt-4">Lista dei Lavori di Restauro</h1>
+        
+        <a th:href="@{/lavoriRestauro/new}" class="btn mb-3" 
+           style="background-color: #6f42c1; border: 2px solid #5a32a3; border-radius: 50px; color: white;">
+            Crea Nuovo Lavoro
+        </a>
+        <a th:href="@{/}" class="btn mb-3" 
+           style="background-color: #dc3545; border: 2px solid #b02a37; border-radius: 50px; color: white;">
+            INDEX
+        </a>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Codice</th>
+                    <th>Descrizione</th>
+                    <th>Prezzo</th>
+                    <th>Quantità/Misura/Pezzi</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lavoro : ${lavoriRestauro}">
+                    <td th:text="${lavoro.id}">1</td>
+                    <td th:text="${lavoro.codice}">Codice</td>
+                    <td th:text="${lavoro.descrizione}">Descrizione</td>
+                    <td th:text="${lavoro.prezzo}">Prezzo</td>
+                    <td th:text="${lavoro.quantitaMisuraPezzi}">Quantità/Misura/Pezzi</td>
+                    <td>
+                        <a th:href="@{/lavoriRestauro/edit/{id}(id=${lavoro.id})}" class="btn btn-warning btn-sm">Modifica</a>
+                        <a th:href="@{/lavoriRestauro/delete/{id}(id=${lavoro.id})}" class="btn btn-danger btn-sm">Elimina</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

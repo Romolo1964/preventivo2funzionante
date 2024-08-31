@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nuovo Preventivo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div>
+       <header  th:fragment="block-header">
+     </div> 
+    <div class="container mt-5">
+        <h2>Nuovo Preventivo</h2>
+        <form th:action="@{/preventivi/save}" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="dataPreventivo">Data Preventivo:</label>
+                <input type="date" class="form-control" id="dataPreventivo" name="dataPreventivo" required>
+            </div>
+            <div class="form-group">
+                <label for="stato">Stato:</label>
+                <input type="text" class="form-control" id="stato" name="stato" required>
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="utente">Seleziona Utente:</label>
+            <ol>
+          <!-- Itera sugli utenti disponibili -->
+            <li th:each="utente : ${utenti}" th:value="${utente.idUtente}" th:text="${utente.nome} + ' ' + ${utente.cognome}"></li>
+            </ol>
+            </div>
+            
+            
+            
+            <div class="form-group">
+                <label for="lavori">Lavori:</label>
+                <select class="form-control" id="lavori" name="lavori" multiple required>
+                    <!-- Itera sui lavori disponibili -->
+                    <option th:each="lavoro : ${lavori}" th:value="${lavoro.idLavoro}" th:text="${lavoro.descrizione}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Salva</button>
+        </form>
+    </div>
+    <div th:insert="fragments/footer :: footer"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

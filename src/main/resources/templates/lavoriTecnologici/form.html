@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Form Lavori Tecnologici</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="fragments/header :: block-header"></div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title mb-0" th:text="${lavoriTecnologici.id == null} ? 'Crea Nuovo Lavoro' : 'Modifica Lavoro'"></h1>
+            </div>
+            <div class="card-body">
+                <form th:action="@{|/lavoriTecnologici/${lavoriTecnologici.id == null} ? 'create' : 'edit/' + ${lavoriTecnologici.id}|}" th:object="${lavoriTecnologici}" method="post">
+                    <div class="form-group">
+                        <label for="_codice">Codice:</label>
+                        <input type="text" id="_codice" class="form-control" th:field="*{_codice}" placeholder="Inserisci il codice" />
+                    </div>
+                    <div class="form-group">
+                        <label for="descrizione">Descrizione:</label>
+                        <input type="text" id="descrizione" class="form-control" th:field="*{descrizione}" placeholder="Inserisci la descrizione" />
+                    </div>
+                    <div class="form-group">
+                        <label for="prezzo">Prezzo:</label>
+                        <input type="text" id="prezzo" class="form-control" th:field="*{prezzo}" placeholder="Inserisci il prezzo" />
+                    </div>
+                    <div class="form-group">
+                        <label for="quantitaMisuraPezzi">Quantità/Misura/Pezzi:</label>
+                        <input type="text" id="quantitaMisuraPezzi" class="form-control" th:field="*{quantitaMisuraPezzi}" placeholder="Inserisci la quantità/misura/pezzi" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salva</button>
+                    <a th:href="@{/lavoriTecnologici/list}" class="btn btn-secondary">Torna alla lista</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/footer :: footer"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

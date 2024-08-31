@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dettaglio Utente</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Dettagli Utente</h2>
+    <div th:if="${selectedUtente != null}">
+        <p><strong>ID:</strong> <span th:text="${selectedUtente.idutente}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="${selectedUtente.nome}"></span></p>
+    </div>
+    <div th:if="${error != null}">
+        <p th:text="${error}" class="text-danger"></p>
+    </div>
+    <a href="/utente/form" class="btn btn-primary">Torna al form</a>
+</div>
+</body>
+</html>

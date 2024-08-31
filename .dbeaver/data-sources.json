@@ -1,0 +1,35 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-18fbaa115e0-11ce52a6e65113d9": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "laziotabelle",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"database": "laziotabelle",
+				"url": "jdbc:mysql://localhost:3306/laziotabelle",
+				"configurationType": "MANUAL",
+				"home": "/usr",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": false,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800
+		}
+	}
+}

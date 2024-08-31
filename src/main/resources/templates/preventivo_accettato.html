@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Preventivo Accettato</title>
+</head>
+<body>
+    <h1>Preventivo Accettato</h1>
+    <p>Il preventivo per <span th:text="${preventivo.utente.nome}"></span> è stato accettato con successo.</p>
+    <p>Totale: €<span th:text="${preventivo.totale}"></span></p>
+    <a href="#" th:href="@{/preventivo/selezionaUtente}">Torna alla Selezione Utente</a>
+</body>
+</html>

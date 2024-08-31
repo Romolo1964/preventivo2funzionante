@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Lista Lavori Tecnologici</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-custom {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .btn-rounded {
+            border-radius: 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="fragments/header :: block-header"></div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista dei Lavori Tecnologici</h1>
+        <a th:href="@{/lavoriTecnologici/create}" class="btn btn-primary mb-3 btn-rounded">Crea Nuovo Lavoro</a>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-custom" style="margin: 5px;">
+                    <thead class="thead-light">
+                        <tr>
+                           
+                            <th>Codice</th>
+                            <th>Descrizione</th>
+                            <th>Quantità/Misura/Pezzi</th>
+                            <th>Prezzo</th>
+                            <th>Azioni</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="lavoro : ${lavoriTecnologiciList}">
+                            <td th:text="${lavoro._codice}">Codice</td>
+                            <td th:text="${lavoro.descrizione}">Descrizione</td>
+                            <td th:text="${lavoro.quantitaMisuraPezzi}">Quantità/Misura/Pezzi</td>
+                            <td th:text="${lavoro.prezzo}">Prezzo</td>
+                            
+                            <td>
+                                <a th:href="@{/lavoriTecnologici/edit/{id}(id=${lavoro.id})}" class="btn btn-warning btn-sm btn-rounded">Modifica</a>
+                                <a th:href="@{/lavoriTecnologici/delete/{id}(id=${lavoro.id})}" class="btn btn-danger btn-sm btn-rounded">Elimina</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/footer :: footer"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

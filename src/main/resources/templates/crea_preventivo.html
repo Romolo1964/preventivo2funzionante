@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crea Preventivo</title>
+    <!-- Includi Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGJhY2tncm91bmR8ZW58MHx8fHwxNjE4NzE5Mzk2&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover; /* Copre l'intero schermo */
+            background-attachment: fixed; /* Fissa lo sfondo durante lo scorrimento */
+            background-position: center; /* Centra l'immagine */
+            background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+            height: 100vh; /* Copre l'intera altezza della finestra */
+            margin: 0; /* Rimuove i margini di default del body */
+        }
+        .card-custom {
+            border-radius: 15px; /* Bordo arrotondato */
+            border: 2px solid #ddd; /* Spessore del bordo */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per dare profondità */
+            margin-bottom: 20px; /* Spazio tra le card */
+            margin-top: 20px
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Crea Preventivo per <span th:text="${utente.nome}"></span></h1>
+        
+        <h2 class="text-center mb-4">Tipo di lavoro  <span th:text="${tipoLavoro}"></span></h2>
+        
+<form th:action="@{/preventivo/crea}" method="post" id="formPreventivo">
+       
+		    <!-- Campo nascosto per l'ID dell'utente -->
+		    <input type="hidden" name="utenteId" th:value="${utente.idutente}">
+		    
+		    <!-- Campo nascosto per il tipo di lavoro -->
+		    <input type="hidden" name="tipoLavoro" th:value="${tipoLavoro}">
+    
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+        
+            <!-- Card per le lavorazioni -->
+            <div class="card card-custom" th:each="lavoro : ${lavori}">
+                <div class="card-body">
+                    <h5 class="card-title">Seleziona Lavoro:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <label class="form-check-label">
+                                <!-- Usa 'idLavorazioni[]' per inviare come lista -->
+                                <input class="form-check-input" type="checkbox" name="idLavorazioni" id="idLavorazioni" th:value="${lavoro.id}">
+                                <h1 th:text="${lavoro.id}">ROMOLO</h1>
+                                <span th:text="${lavoro.descrizione + ' - Prezzo: € ' + lavoro.prezzo}"></span>
+                            </label>                           
+                        </li>
+                    </ul>
+                </div>               
+            </div>
+            
+        </div>
+    </div>
+    <!-- Pulsante per calcolare il preventivo -->
+    						<button type="submit" class="btn btn-primary btn-block mt-3">Aggiungi a Preventivo la lavorazione</button>
+</form>
+
+    </div>
+
+    <!-- Includi Bootstrap JS e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Lista Lavori Tecnologici</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista dei Lavori Tecnologici</h1>
+        <a th:href="@{/lavoriTecnologici/create}" class="btn btn-primary mb-3">Crea Nuovo Lavoro</a>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-columns">
+                    <div class="card mb-4" th:each="lavoro : ${lavoriTecnologiciList}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${lavoro.descrizione}">Descrizione</h5>
+                            <p class="card-text">
+                                <strong>Codice:</strong> <span th:text="${lavoro._codice}">Codice</span><br>
+                                <strong>Prezzo:</strong> <span th:text="${lavoro.prezzo}">Prezzo</span><br>
+                                <strong>Quantità/Misura/Pezzi:</strong> <span th:text="${lavoro.quantitaMisuraPezzi}">Quantità/Misura/Pezzi</span>
+                            </p>
+                            <a th:href="@{/lavoriTecnologici/edit/{id}(id=${lavoro.id})}" class="btn btn-warning">Modifica</a>
+                            <a th:href="@{/lavoriTecnologici/delete/{id}(id=${lavoro.id})}" class="btn btn-danger">Elimina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

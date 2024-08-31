@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo/Modifica Lavoro Elettrico</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4" th:text="${#strings.isEmpty(lavoro.id) ? 'Nuovo Lavoro Elettrico' : 'Modifica Lavoro Elettrico'}"></h1>
+        <form th:action="@{${#strings.isEmpty(lavoro.id) ? '/lavori-elettrici' : '/lavori-elettrici/' + lavoro.id}}" th:object="${lavoro}" method="post">
+            <div class="form-group">
+                <label for="codice">Codice</label>
+                <input type="text" id="codice" th:field="*{codice}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="descrizione">Descrizione</label>
+                <textarea id="descrizione" th:field="*{descrizione}" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="prezzo">Prezzo</label>
+                <input type="text" id="prezzo" th:field="*{prezzo}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="quantitaMisuraPezzi">Quantità/Misura/Pezzi</label>
+                <input type="text" id="quantitaMisuraPezzi" th:field="*{quantitaMisuraPezzi}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="sigla">Sigla</label>
+                <input type="text" id="sigla" th:field="*{sigla}" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Salva</button>
+            <a th:href="@{/lavori-elettrici}" class="btn btn-secondary">Indietro</a>
+        </form>
+    </div>
+</body>
+</html>

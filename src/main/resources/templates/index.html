@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home - Preventivo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .rounded-btn {
+            border-radius: 50px;
+            border: 3px solid black;
+            margin: 5px;
+        }
+        .navbar-custom {
+            background-color: #f8f9fa;
+        }
+        .container-custom {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+        .header-logo img {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+   <div th:insert="fragments/header :: block-header"></div>
+    
+    <div class="container container-custom text-center">
+    <h1>Benvenuto nel Sistema di Preventivi</h1>
+    <p>Utilizza la barra di navigazione per accedere alle diverse sezioni.</p>
+    
+    <h2>Ultime Notizie</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Titolo Articolo 1</h5>
+                    <p class="card-text">La norma CEI 11-27 "Lavori su impianti elettrici" è la norma tecnica di riferimento per tutte le attività di lavoro sugli impianti elettrici, che sono normate dal D. Lgs. 81/2008 in particolare dagli Artt. 82 (lavori sotto tensione) e 83 (Lavori in prossimità di parti attive) e ne rimandano l'applicazione.</p>
+                    <a href="#" class="btn btn-primary">Leggi di più</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Titolo Articolo 2</h5>
+                    <p class="card-text">Breve descrizione dell'articolo 2.</p>
+                    <a href="#" class="btn btn-primary">Leggi di più</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Titolo Articolo 3</h5>
+                    <p class="card-text">Breve descrizione dell'articolo 3.</p>
+                    <a href="#" class="btn btn-primary">Leggi di più</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+<div class="form-group blu-margin">
+    <select class="form-control" th:field="${utente.idutente}" id="dropUtente">
+        <option value="1">Seleziona utente</option>
+        <option th:each="utente : ${utenti}" th:value="${utente.idutente}" th:text="${utente.nome}"></option>
+    </select>
+</div>
+
+
+<div th:insert="fragments/footer :: footer"></div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

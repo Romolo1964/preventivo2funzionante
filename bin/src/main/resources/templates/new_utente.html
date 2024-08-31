@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo Utente</title>
+    <!-- Includere il CSS di Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizzato -->
+    <style>
+        body {
+            background: url('https://source.unsplash.com/random/1600x900') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+    </style>
+    
+    
+    
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Nuovo Utente</h1>
+        <form th:action="@{/utenti}" th:object="${utente}" method="post">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" class="form-control" placeholder="Inserisci il nome" />
+            </div>
+            <div class="form-group">
+                <label for="cognome">Cognome:</label>
+                <input type="text" id="cognome" th:field="*{cognome}" class="form-control" placeholder="Inserisci il cognome" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Inserisci l'email" />
+            </div>
+            <div class="form-group">
+                <label for="dataDiNascita">Data di Nascita:</label>
+                <input type="date" id="dataDiNascita" th:field="*{dataDiNascita}" class="form-control" />
+            </div>
+            <!-- Aggiungi altri campi necessari -->
+            <button type="submit" class="btn btn-primary">Salva</button>
+            <a th:href="@{/utenti}" class="btn btn-secondary">Indietro</a>
+        </form>
+    </div>
+    <!-- Includere il JS di Bootstrap (opzionale, per funzionalità aggiuntive) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

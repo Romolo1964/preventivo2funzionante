@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${lavoriRestauro.id == null} ? 'Crea Nuovo Lavoro di Restauro' : 'Modifica Lavoro di Restauro'"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${lavoriRestauro.id == null} ? 'Crea Nuovo Lavoro di Restauro' : 'Modifica Lavoro di Restauro'"></h1>
+        <form th:action="@{|/lavoriRestauro/${lavoriRestauro.id == null} ? 'save' : 'update/' + ${lavoriRestauro.id}|}" th:object="${lavoriRestauro}" method="post">
+            <div class="form-group">
+                <label for="codice">Codice:</label>
+                <input type="text" id="codice" class="form-control" th:field="*{codice}" />
+            </div>
+            <div class="form-group">
+                <label for="descrizione">Descrizione:</label>
+                <input type="text" id="descrizione" class="form-control" th:field="*{descrizione}" />
+            </div>
+            <div class="form-group">
+                <label for="prezzo">Prezzo:</label>
+                <input type="text" id="prezzo" class="form-control" th:field="*{prezzo}" />
+            </div>
+            <div class="form-group">
+                <label for="quantitaMisuraPezzi">Quantità/Misura/Pezzi:</label>
+                <input type="text" id="quantitaMisuraPezzi" class="form-control" th:field="*{quantitaMisuraPezzi}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Salva</button>
+            <a th:href="@{/lavoriRestauro}" class="btn btn-secondary">Annulla</a>
+        </form>
+    </div>
+</body>
+</html>

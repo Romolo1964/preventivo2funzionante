@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Preventivo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/createPreventivo}">Creazione Preventivo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Registrazione Utente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lavoriElettrici/list}">Lavori Elettrici</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lavoriEdili/list}">Lavori Edili</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lavoriManutenzione/list}">Lavori di Manutenzione</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lavoriRestauro/list}">Lavori di Restauro</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>

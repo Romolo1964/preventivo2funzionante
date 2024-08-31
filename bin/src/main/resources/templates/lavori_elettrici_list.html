@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lavori Elettrici</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+       
+        
+    <div class="container">
+        <h1 class="my-4">Lavori Elettrici</h1>
+        
+        <a class="btn btn-success mb-3" th:href="@{/lavori-elettrici/nuovo}">Nuovo Lavoro</a>
+        
+        <a th:href="@{/}" class="btn mb-3" 
+           style="background-color: #dc3545; border: 2px solid #b02a37; border-radius: 50px; color: white;">
+            INDEX
+        </a>
+        
+        <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th># id</th>
+                    <th>Codice</th>
+                    <th>Sigla</th>
+                    <th>Descrizione</th>
+                    <th>Quantità/Misura/Pezzi</th>
+                    <th>Prezzo</th>
+                    
+                    
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lavoro, iterStat : ${lavori}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${lavoro.codice}"></td>
+                    <td th:text="${lavoro.sigla}"></td>
+                    <td th:text="${lavoro.descrizione}" style="width: 40%;"></td>
+                    <td th:text="${lavoro.quantitaMisuraPezzi}"></td>
+                    <td th:text="${lavoro.prezzo}"></td>
+                    
+                    
+                    <td>
+                        <a th:href="@{/lavori-elettrici/{id}/modifica(id=${lavoro.id})}" class="btn btn-primary btn-sm" 
+                           style="border-radius: 50px; border: 6px solid #007bff;">
+                            Modifica
+                        </a>
+                        <a th:href="@{/lavori-elettrici/{id}/elimina(id=${lavoro.id})}" class="btn btn-danger btn-sm" 
+                           style="border-radius: 50px; border: 6px solid #dc3545;">
+                            Elimina
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
