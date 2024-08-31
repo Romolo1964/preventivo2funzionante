@@ -24,8 +24,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/preventivo")
 public class PreventivoController {
-	
-	
 
 	public enum LavoroEdile {
 	    LAVORI_EDILI("Lavori edili"),

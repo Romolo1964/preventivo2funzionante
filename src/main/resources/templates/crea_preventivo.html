@@ -51,10 +51,14 @@
                             <label class="form-check-label">
                                 <!-- Usa 'idLavorazioni[]' per inviare come lista -->
                                 <input class="form-check-input" type="checkbox" name="idLavorazioni" id="idLavorazioni" th:value="${lavoro.id}">
-                                <h1 th:text="${lavoro.id}">ROMOLO</h1>
+                                <h1 th:text="${lavoro.id}"></h1>
                                 <span th:text="${lavoro.descrizione + ' - Prezzo: € ' + lavoro.prezzo}"></span>
-                            </label>                           
+                            </label> 
+                                <!-- Messaggio statico di avviso -->
+                                <p>****************************************************</p>
+                                <small class="text-danger">Seleziona la checkbox in alto per aggiungere la lavorazione al preventivo.</small>                      
                         </li>
+                         <!-- Altre checkbox qui... -->
                     </ul>
                 </div>               
             </div>
