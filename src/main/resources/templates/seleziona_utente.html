@@ -46,7 +46,9 @@
                     <!-- Opzioni per gli utenti disponibili -->
                     <option th:each="utente : ${utenti}" 
                     th:value="${utente.idutente}" 
-                    th:text="'idutente=' + ${utente.idutente} + ' Nome Utente=' + ${utente.nome}"></option>                   
+                    th:text="'idutente=' + ${utente.idutente} + ' Nome Utente=' + ${utente.nome}"
+                    ></option>  
+                                     
                 </select>
                 
                 <!-- Selettore dei tipi di lavorazioni -->

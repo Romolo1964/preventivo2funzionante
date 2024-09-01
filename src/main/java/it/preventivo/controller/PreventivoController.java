@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import it.preventivo.entity.Lavorazione;
 import it.preventivo.entity.Preventivo;
+import it.preventivo.entity.Utente;
 import it.preventivo.repository.LavorazioneRepository;
 import it.preventivo.repository.UtenteRepository;
 import it.preventivo.service.LavoriEdiliService;
@@ -18,8 +19,12 @@ import it.preventivo.service.LavoriRestauroService;
 import it.preventivo.service.LavoriTecnologiciService;
 import it.preventivo.service.PreventivoServiceNOOOO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 @Controller
 @RequestMapping("/preventivo")
@@ -149,6 +154,8 @@ public class PreventivoController {
             @RequestParam Long utenteId,
             @RequestParam String tipoLavoro,
             @RequestParam(name="idLavorazioni", required = false) List<Long> idLavorazioni,
+            @RequestParam(name="listaLavori", required = false) List<Long> listaLavori,
+            @RequestParam Map<String, String> quantita, // Mappa per ottenere le quantità delle lavorazioni
             Model model) {
 
         // Log di debug per verificare gli input ricevuti
@@ -156,7 +163,126 @@ public class PreventivoController {
         System.out.println("Il cliente id è = " + utenteId);
         System.out.println("Tipo di lavori è = " + tipoLavoro);
         System.out.println("ID Lavorazioni selezionati: " + idLavorazioni);
+        
+       // System.out.println("Lista di tutti i lavori: " + listaLavori);
+       // System.out.println("Quantità ricevute: " + quantita);
+        System.out.println("*************************************************************** ");
+        // Mappa per gestire le quantità
+        Map<Long, Integer> quantitaMap = new HashMap<>();
+        
+//     // Popola la mappa con le quantità
+//        double count=1;
+//        for (Entry<String, String> entry : quantita.entrySet()) {
+//            String key = entry.getKey();
+//            System.out.println("Appena entrato nel for per recuperare le chiavi");
+//            System.out.println("Numero: "+count+"  Chiave: " + key+"="+entry.getValue());
+//            if (key.startsWith("quantita[")) {
+//            	System.out.println("sto dentro l' if");
+//            	System.out.println("La Key = "+key);
+//                // Estrai l'ID e la quantità dalla chiave
+//                String idStr = key.substring(9, key.length() - 1); // Estrai l'ID
+//               // System.out.println(idStr);
+//                
+//                try {
+//                  //  Long id = Long.parseLong(idStr);
+//                  // Integer qty = Integer.parseInt(entry.getValue());
+//                    
+//                  //  System.out.println(id + " " + "qty");
+//                 //   quantitaMap.put(id, qty);
+//                } catch (NumberFormatException e) {
+//                    System.out.println("Errore nella conversione di ID o quantità: " + e.getMessage());
+//                }
+//            }
+//            count=count+1;
+//        }
 
+        // Log della mappa delle quantità
+       // System.out.println("Mappa delle quantità: " + quantitaMap);
+        
+        
+        
+        
+        
+        // Popola la mappa con le quantità
+        // Recupera la quantità per ciascuna lavorazione selezionata
+        
+//     // Trasforma la mappa delle quantità da String a 
+//        for (String key : quantita.keySet()) {
+//            if (key.startsWith("quantita[")) {
+//                String idStr = key.substring(9, key.length() - 1); // Estrai l'ID
+//                Long id = Long.parseLong(idStr);
+//                Integer qty = Integer.parseInt(quantita.get(key));
+//                quantitaMap.put(id, qty);
+//                System.out.println("La Mappa"+quantitaMap);
+//            }
+//        }
+//        
+//     // Otteniamo la lista delle chiavi
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("Stampa delle chiavi della mappa delle quantità:");
+        for (String key : quantita.keySet()) {
+           // System.out.println(key);
+        }
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------");
+        List<String> listaChiavi = new ArrayList<>(quantita.keySet());
+     // Stampiamo la lista delle chiavi
+        System.out.println("Lista delle chiavi: " + listaChiavi);
+        System.out.println("Numero delle chiavi: " +listaChiavi.size());
+        System.out.println("idLavorazioni:"+idLavorazioni);
+        
+  
+        
+        
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        /**
+         * Metodo per filtrare e recuperare le quantità selezionate da una mappa di parametri
+         * provenienti dal form HTML. La funzione cerca chiavi che iniziano con "quantita["
+         * e associa le quantità corrispondenti agli ID delle lavorazioni selezionate.
+         *
+         * @param quantita Una mappa di parametri contenente chiavi nel formato "quantita[<idLavorazione>]"
+         *                 e i relativi valori delle quantità.
+         * @param idLavorazioni Una lista di ID delle lavorazioni selezionate dall'utente.
+         * @return Una mappa contenente le quantità selezionate, con l'ID della lavorazione come chiave
+         *         e la quantità associata come valore.
+         */
+        // Filtra solo le quantità selezionate
+        // Ritorna una mappa con le quantità selezionate, con l'ID della lavorazione come chiave
+        // e la quantità associata come valore.
+        // Mappa per memorizzare le quantità selezionate
+        Map<Long, Integer> quantitaSelezionate = new HashMap<>();
+        
+        // Itera attraverso tutte le chiavi della mappa dei parametri
+        for (String key : quantita.keySet()) {
+        	// Verifica se la chiave inizia con "quantita[" e se l'ID della lavorazione selezionata è presente'"]"
+            if (key.startsWith("quantita[")) {
+            	// Estrae l'ID della lavorazione dalla chiave usando il parsing del numero
+                Long idLavorazione = Long.parseLong(key.replace("quantita[", "").replace("]", ""));
+                
+                if (idLavorazioni.contains(idLavorazione)) {
+                    // Recupera la quantità dalla mappa quantita usando la chiave corrente
+                    Integer qty = Integer.parseInt(quantita.get(key));
+                    
+                    // Aggiunge la quantità alla mappa quantitaSelezionate, associandola all'ID della lavorazione'
+                    // Aggiunge l'ID della lavorazione e la quantità alla mappa delle quantità selezionate
+                    quantitaSelezionate.put(idLavorazione, qty);
+                    
+                    // Debug: stampa l'id della lavorazione e la quantità associata
+                    System.out.println("IdLavorazione: " + idLavorazione + ", Quantità: " + qty);
+                }
+            } 
+        }
+
+
+        // Stampa le quantità selezionate per il debug funziona ma lo commentato
+//        quantitaSelezionate.forEach((id, qty) -> System.out.println("IdLavorazione: " + id + ", Quantità: " + qty));
+
+        // Esegui la logica di business necessaria qui...
+
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        
+        
+        
         // Recupera l'utente dal repository e aggiungilo al modello, gestendo l'errore se l'utente non viene trovato
         utenteRepository.findById(utenteId).ifPresentOrElse(
             utente -> model.addAttribute("utente", utente),
@@ -168,9 +294,16 @@ public class PreventivoController {
             return "seleziona_utente"; // Torna alla vista di selezione utente se l'utente non esiste
         }
 
-        // Verifica se la lista di lavorazioni è vuota o assente
-//        if (idLavorazioni == null || idLavorazioni[].isEmpty()) {
+//        // Verifica se la lista di lavorazioni è vuota o assente
+//        if (idLavorazioni == null || idLavorazioni.isEmpty()) {
 //            model.addAttribute("errore", "Nessuna lavorazione selezionata.");
+//            
+//      
+//			//      Long utenteID=utenteRepository.getById(utenteId);
+//            model.addAttribute("utente", utente.getNome(utenteRepository.getById(utenteId)));
+//            model.addAttribute("tipoLavoro", tipoLavoro);
+//            model.addAttribute("listaLavori", listaLavori);
+//            System.out.println("Nessuna lavorazione selezionata");
 //            return "crea_preventivo"; // Torna alla vista di creazione del preventivo se non sono state selezionate lavorazioni
 //        }
 
