@@ -1,23 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lavori Elettrici</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Stili personalizzati -->
+    <style>
+        /* Aggiungi immagine di sfondo a tema impianti elettrici */
+        body {
+             background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradiente di colori */ 
+            background-size: cover; /* Copre l'intero sfondo */
+            background-position: center; /* Posiziona l'immagine al centro */
+            background-repeat: no-repeat; /* Non ripete l'immagine */
+            min-height: 100vh; /* Altezza minima per coprire l'intera pagina */
+            color: #fff; /* Colore del testo per migliorare la leggibilità su sfondo */
+        }
+
+        /* Aggiungi un leggero sfondo opaco alle sezioni di contenuto */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente per il contenuto */
+            border-radius: 15px; /* Bordo arrotondato per il contenitore */
+            padding: 20px; /* Spaziatura interna */
+            margin-top: 30px; /* Spaziatura superiore */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per un effetto più definito */
+        }
+
+        /* Stile per i pulsanti */
+        .btn-custom {
+            border-radius: 50px; /* Bordo arrotondato */
+            color: white; /* Colore del testo bianco */
+        }
+
+        /* Stile per i bottoni di azione */
+        .btn-modifica {
+            border: 6px solid #007bff; /* Bordo blu per il pulsante di modifica */
+        }
+
+        .btn-elimina {
+            border: 6px solid #dc3545; /* Bordo rosso per il pulsante di eliminazione */
+        }
+    </style>
 </head>
 <body>
-     <div th:insert="fragments/header :: block-header"></div>  
+    <!-- Inclusione del frammento di intestazione -->
+    <div th:insert="fragments/header :: block-header"></div>  
+    
     <div class="container">
         <h1 class="my-4">Lavori Elettrici</h1>
         
         <a class="btn btn-success mb-3" th:href="@{/lavori-elettrici/nuovo}">Nuovo Lavoro</a>
         
-        <a th:href="@{/}" class="btn mb-3" 
-           style="background-color: #dc3545; border: 2px solid #b02a37; border-radius: 50px; color: white;">
+        <a th:href="@{/}" class="btn btn-custom mb-3" style="background-color: #dc3545; border: 2px solid #b02a37;">
             INDEX
         </a>
         
         <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}"></div>
         <div th:if="${errorMessage}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
+        
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -27,8 +67,6 @@
                     <th>Descrizione</th>
                     <th>Quantità/Misura/Pezzi</th>
                     <th>Prezzo</th>
-                    
-                    
                     <th>Azioni</th>
                 </tr>
             </thead>
@@ -40,15 +78,13 @@
                     <td th:text="${lavoro.descrizione}" style="width: 40%;"></td>
                     <td th:text="${lavoro.quantitaMisuraPezzi}"></td>
                     <td th:text="${lavoro.prezzo}"></td>
-                    
-                    
                     <td>
-                        <a th:href="@{/lavori-elettrici/{id}/modifica(id=${lavoro.id})}" class="btn btn-primary btn-sm" 
-                           style="border-radius: 50px; border: 6px solid #007bff;">
+                        <a th:href="@{/lavori-elettrici/{id}/modifica(id=${lavoro.id})}" 
+                           class="btn btn-primary btn-sm btn-modifica">
                             Modifica
                         </a>
-                        <a th:href="@{/lavori-elettrici/{id}/elimina(id=${lavoro.id})}" class="btn btn-danger btn-sm" 
-                           style="border-radius: 50px; border: 6px solid #dc3545;">
+                        <a th:href="@{/lavori-elettrici/{id}/elimina(id=${lavoro.id})}" 
+                           class="btn btn-danger btn-sm btn-elimina">
                             Elimina
                         </a>
                     </td>
@@ -56,6 +92,13 @@
             </tbody>
         </table>
     </div>
+    
+    <!-- Inclusione del frammento del footer -->
     <div th:insert="fragments/footer :: footer"></div>
+
+    <!-- Includi i JS di Bootstrap e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

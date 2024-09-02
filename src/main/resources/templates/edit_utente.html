@@ -1,24 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifica Utente</title>
+    <!-- Includi i CSS di Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Sfondo colorato per la pagina */
+        body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradiente di colori */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Stile personalizzato per le card */
+        .custom-card {
+            border-radius: 15px; /* Bordo arrotondato */
+            border: 1px solid #dee2e6; /* Colore del bordo */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per maggiore profondità */
+            background-color: #ffffff; /* Colore di sfondo della card */
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .btn-custom {
+            border-radius: 8px;
+        }
+
+        /* Margine inferiore per spostare il footer in basso */
+        .footer {
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
-<div th:insert="fragments/header :: block-header"></div>
-    <h1>Modifica Utente</h1>
-    <form th:action="@{/utenti/update/{id}(id=${utente.idutente})}" th:object="${utente}" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" th:field="*{nome}" /><br>
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" th:field="*{cognome}" /><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" th:field="*{email}" /><br>
-        <label for="dataDiNascita">Data di Nascita:</label>
-        <input type="date" id="dataDiNascita" th:field="*{dataDiNascita}" /><br>
-        <!-- Aggiungi altri campi necessari -->
-        <button type="submit">Aggiorna</button>
-    </form>
-    <a th:href="@{/utenti}">Indietro</a>
-    <div th:insert="fragments/footer :: footer"></div>
+    <!-- Header della pagina (Navbar) -->
+    <div th:insert="fragments/header :: block-header"></div>
+
+    <!-- Contenuto principale -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Card per il modulo di modifica utente -->
+                <div class="card custom-card">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h2>Modifica Utente</h2>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/utenti/update/{id}(id=${utente.idutente})}" th:object="${utente}" method="post">
+                            <div class="form-group">
+                                <label for="nome">Nome:</label>
+                                <input type="text" id="nome" class="form-control" th:field="*{nome}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cognome">Cognome:</label>
+                                <input type="text" id="cognome" class="form-control" th:field="*{cognome}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" class="form-control" th:field="*{email}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="dataDiNascita">Data di Nascita:</label>
+                                <input type="date" id="dataDiNascita" class="form-control" th:field="*{dataDiNascita}" />
+                            </div>
+                            <!-- Aggiungi altri campi necessari -->
+                            <button type="submit" class="btn btn-primary btn-custom">Aggiorna</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a th:href="@{/utenti}" class="btn btn-secondary btn-custom">Indietro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer della pagina -->
+    <div th:insert="fragments/footer :: footer" class="footer"></div>
+
+    <!-- Includi i JS di Bootstrap e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

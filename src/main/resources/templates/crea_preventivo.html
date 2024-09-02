@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Crea Preventivo per <span th:text="${utente.nome}"></span></h1>
+        <h1 class="text-center mb-4">Crea Preventivo per <span th:text="${utente.nome.toUpperCase()}"></span></h1>
         
         <h2 class="text-center mb-4">Tipo di lavoro  <span th:text="${tipoLavoro}"></span></h2>
          
@@ -66,16 +66,14 @@
                                 <p>****************************************************</p>
                                 
                                 <!-- Campo di input per la quantità -->
-								<label for="quantita">Quantità delle lavorazioni:</label>
-								
+								<label for="quantita">Quantità delle lavorazioni:</label>								
 								<input type="number" 
 									   th:name="'quantita[' + ${lavoro.id} + ']'" 
 								       th:id="'quantita_' + ${lavoro.id}" 
 								       min="1" 
 								       step="1" 
 								       class="form-control" 
-								       th:value="1"
-								       
+								       th:value="1"								       
 								       />
 								
 								   <!--  onchange="toggleQuantity(this)"-->

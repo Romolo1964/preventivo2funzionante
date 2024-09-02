@@ -18,6 +18,7 @@ import it.preventivo.service.LavoriManutenzioneService;
 import it.preventivo.service.LavoriRestauroService;
 import it.preventivo.service.LavoriTecnologiciService;
 import it.preventivo.service.PreventivoServiceNOOOO;
+import it.preventivo.service.UtenteService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,8 +49,8 @@ public class PreventivoController {
 	}
 	
     @Autowired
-    private UtenteRepository utenteRepository;
-
+   // private UtenteRepository utenteRepository;
+    private UtenteService utenteService;
 //    @Autowired
 //    private LavorazioneRepository lavorazioneRepository;
     
@@ -74,7 +75,7 @@ public class PreventivoController {
     
     @GetMapping("/selezionaUtente")
     public String selezionaUtente(Model model) {
-        model.addAttribute("utenti", utenteRepository.findAll());
+        model.addAttribute("utenti", utenteService.findAll());
         model.addAttribute("tipiLavoro", Arrays.asList(LavoroEdile.values()));
         
         return "seleziona_utente";
@@ -89,7 +90,7 @@ public class PreventivoController {
         // Log per il debug dei parametri ricevuti
         System.out.println("Il clienteID è=" + utenteId);
         System.out.println("Il tipo di lavoro è=" + tipoLavoro);
-
+        System.out.println("Esco dal phat `/preventivo/crea`  di tipo post ");
         // Verifica che l'utenteId non sia nullo e che il tipoLavoro sia fornito
         if (utenteId == null || tipoLavoro == null || tipoLavoro.isEmpty()) {
             model.addAttribute("errore", "Seleziona sia un utente che un tipo di lavorazione.");
@@ -97,8 +98,8 @@ public class PreventivoController {
             return "seleziona_utente"; // Modifica con il nome della tua vista di selezione se necessario
         }
 
-        // Recupera l'utente dal repository e aggiungilo al modello
-        utenteRepository.findById(utenteId).ifPresentOrElse(
+        // Recupera l'utente dal repository e aggiungilo al modello per usarlo nella vista .
+        utenteService.findById(utenteId).ifPresentOrElse(
             utente -> model.addAttribute("utente", utente),
             () -> model.addAttribute("errore", "Utente non trovato.")
         );        
@@ -106,7 +107,7 @@ public class PreventivoController {
         // Aggiungi il tipo di lavoro al modello per usarlo nella vista
         model.addAttribute("tipoLavoro", tipoLavoro);
         
-        // Seleziona la lista giusta di lavori in base al tipoLavoro
+        // Seleziona la lista giusta di lavori in base al tipoLavoro e la aggiungo nella vista.
         switch (tipoLavoro.toLowerCase()) {
             case "lavori_edili":
                 model.addAttribute("lavori", lavoriEdiliService.findAll());
@@ -129,14 +130,11 @@ public class PreventivoController {
                 // Ritorna alla vista di selezione con un messaggio di errore
                 return "seleziona_utente"; // Modifica con il nome della tua vista di selezione se necessario
         }
-        
-        
-        // Recupera la lista dei lavori edili dal repository e aggiungila al modello
-        // Aggiungi la lista dei lavori edili al modello
-       // model.addAttribute("lavori", lavoriEdiliService.findAll());
-        
-        // Ritorna la vista crea_preventivo.html per creare il preventivo
-        return "crea_preventivo";
+               
+        // model.addAttribute("utente", utente)
+        // model.addAttribute("tipoLavoro", tipoLavoro);
+        // model.addAttribute("lavori", lavori????Service.findAll()); List lavori selezionata.        
+        return "crea_preventivo";// Ritorna alla vista crea_preventivo.html per creare il preventivo
     }
 
 
@@ -157,66 +155,14 @@ public class PreventivoController {
             @RequestParam(name="listaLavori", required = false) List<Long> listaLavori,
             @RequestParam Map<String, String> quantita, // Mappa per ottenere le quantità delle lavorazioni
             Model model) {
-
         // Log di debug per verificare gli input ricevuti
     	System.out.println("Appena entrato nel @PostMapping`/crea`");
         System.out.println("Il cliente id è = " + utenteId);
         System.out.println("Tipo di lavori è = " + tipoLavoro);
-        System.out.println("ID Lavorazioni selezionati: " + idLavorazioni);
-        
-       // System.out.println("Lista di tutti i lavori: " + listaLavori);
+        System.out.println("ID Lavorazioni selezionati: " + idLavorazioni);        
+        System.out.println("Lista di tutti i lavori: " + listaLavori);
        // System.out.println("Quantità ricevute: " + quantita);
-        System.out.println("*************************************************************** ");
-        // Mappa per gestire le quantità
-        Map<Long, Integer> quantitaMap = new HashMap<>();
-        
-//     // Popola la mappa con le quantità
-//        double count=1;
-//        for (Entry<String, String> entry : quantita.entrySet()) {
-//            String key = entry.getKey();
-//            System.out.println("Appena entrato nel for per recuperare le chiavi");
-//            System.out.println("Numero: "+count+"  Chiave: " + key+"="+entry.getValue());
-//            if (key.startsWith("quantita[")) {
-//            	System.out.println("sto dentro l' if");
-//            	System.out.println("La Key = "+key);
-//                // Estrai l'ID e la quantità dalla chiave
-//                String idStr = key.substring(9, key.length() - 1); // Estrai l'ID
-//               // System.out.println(idStr);
-//                
-//                try {
-//                  //  Long id = Long.parseLong(idStr);
-//                  // Integer qty = Integer.parseInt(entry.getValue());
-//                    
-//                  //  System.out.println(id + " " + "qty");
-//                 //   quantitaMap.put(id, qty);
-//                } catch (NumberFormatException e) {
-//                    System.out.println("Errore nella conversione di ID o quantità: " + e.getMessage());
-//                }
-//            }
-//            count=count+1;
-//        }
-
-        // Log della mappa delle quantità
-       // System.out.println("Mappa delle quantità: " + quantitaMap);
-        
-        
-        
-        
-        
-        // Popola la mappa con le quantità
-        // Recupera la quantità per ciascuna lavorazione selezionata
-        
-//     // Trasforma la mappa delle quantità da String a 
-//        for (String key : quantita.keySet()) {
-//            if (key.startsWith("quantita[")) {
-//                String idStr = key.substring(9, key.length() - 1); // Estrai l'ID
-//                Long id = Long.parseLong(idStr);
-//                Integer qty = Integer.parseInt(quantita.get(key));
-//                quantitaMap.put(id, qty);
-//                System.out.println("La Mappa"+quantitaMap);
-//            }
-//        }
-//        
+        System.out.println("*************************************************************** ");  
 //     // Otteniamo la lista delle chiavi
         System.out.println("-----------------------------------------------------------------");
         System.out.println("Stampa delle chiavi della mappa delle quantità:");
@@ -230,10 +176,7 @@ public class PreventivoController {
         System.out.println("Lista delle chiavi: " + listaChiavi);
         System.out.println("Numero delle chiavi: " +listaChiavi.size());
         System.out.println("idLavorazioni:"+idLavorazioni);
-        
-  
-        
-        
+      
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         /**
          * Metodo per filtrare e recuperare le quantità selezionate da una mappa di parametri
@@ -250,8 +193,7 @@ public class PreventivoController {
         // Ritorna una mappa con le quantità selezionate, con l'ID della lavorazione come chiave
         // e la quantità associata come valore.
         // Mappa per memorizzare le quantità selezionate
-        Map<Long, Integer> quantitaSelezionate = new HashMap<>();
-        
+        Map<Long, Integer> quantitaSelezionate = new HashMap<>();        
         // Itera attraverso tutte le chiavi della mappa dei parametri
         for (String key : quantita.keySet()) {
         	// Verifica se la chiave inizia con "quantita[" e se l'ID della lavorazione selezionata è presente'"]"
@@ -269,22 +211,22 @@ public class PreventivoController {
                     
                     // Debug: stampa l'id della lavorazione e la quantità associata
                     System.out.println("IdLavorazione: " + idLavorazione + ", Quantità: " + qty);
+                    
+                    
                 }
             } 
         }
-
-
+     // Aggiungi la mappa quantitaSelezionate al model
+        model.addAttribute("quantitaSelezionate", quantitaSelezionate);
         // Stampa le quantità selezionate per il debug funziona ma lo commentato
 //        quantitaSelezionate.forEach((id, qty) -> System.out.println("IdLavorazione: " + id + ", Quantità: " + qty));
-
-        // Esegui la logica di business necessaria qui...
 
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         
         
         
         // Recupera l'utente dal repository e aggiungilo al modello, gestendo l'errore se l'utente non viene trovato
-        utenteRepository.findById(utenteId).ifPresentOrElse(
+        utenteService.findById(utenteId).ifPresentOrElse(
             utente -> model.addAttribute("utente", utente),
             () -> model.addAttribute("errore", "Utente non trovato.")
         );
@@ -294,18 +236,6 @@ public class PreventivoController {
             return "seleziona_utente"; // Torna alla vista di selezione utente se l'utente non esiste
         }
 
-//        // Verifica se la lista di lavorazioni è vuota o assente
-//        if (idLavorazioni == null || idLavorazioni.isEmpty()) {
-//            model.addAttribute("errore", "Nessuna lavorazione selezionata.");
-//            
-//      
-//			//      Long utenteID=utenteRepository.getById(utenteId);
-//            model.addAttribute("utente", utente.getNome(utenteRepository.getById(utenteId)));
-//            model.addAttribute("tipoLavoro", tipoLavoro);
-//            model.addAttribute("listaLavori", listaLavori);
-//            System.out.println("Nessuna lavorazione selezionata");
-//            return "crea_preventivo"; // Torna alla vista di creazione del preventivo se non sono state selezionate lavorazioni
-//        }
 
         // Aggiungi gli attributi necessari al modello
         model.addAttribute("idLavorazioni", idLavorazioni);

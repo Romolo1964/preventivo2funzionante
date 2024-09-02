@@ -2,23 +2,82 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizza Preventivo</title>
+    <!-- Includi i CSS di Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Stili personalizzati -->
+    <style>
+        /* Sfondo con immagine per la pagina */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d'); /* Immagine statica da Unsplash */
+            background-size: cover; /* L'immagine copre tutto lo sfondo */
+            background-position: center; /* Posiziona l'immagine al centro */
+            background-repeat: no-repeat; /* Non ripetere l'immagine */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Allinea gli elementi verticalmente */
+            justify-content: center;
+            align-items: center;
+            color: #fff; /* Colore del testo per migliorare la leggibilità su sfondo */
+        }
+
+        /* Stile personalizzato per la card */
+        .custom-card {
+            border-radius: 30px; /* Bordo arrotondato */
+            border: 5px solid #343a40; /* Spessore del bordo */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ombra per maggiore profondità */
+            width: 100%; /* Larghezza della card */
+            max-width: 600px; /* Larghezza massima per migliorare la responsività */
+            margin-bottom: 20px; /* Spazio sotto la card */
+            background-color: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente per la card */
+        }
+    </style>
 </head>
 <body>
-    <h1>Preventivo per <span th:text="${utente.nome}"></span></h1>
-    <h2>Tipo di lavoro <span th:text="${tipoLavoro}"></span></h2>
-    <h3>Lista di lavorazioni <span th:text="${idLavorazioni}"></span></h3>
-    <p>Stampa un'arrey di Id dei valori selezionati (idlavorazioni)>> <span th:text="${idLavorazioni}"></span></p>
-    
-    <p th:text="${idLavorazioni}"></p>
-    
-    <form action="/preventivo/accetta" method="post">
- <!-- Invio al controller "/preventivo/accetta" questi tre parametri ,sono situati in un <imput> di type nascosto ... -->   
-    	<input type="hidden" name="utenteNome" th:value="${utente.nome}">
-    	<input type="hidden" name="tipoLavoro" th:value="${tipoLavoro}">    
-        <input type="hidden" name="idLavorazioni" th:value="${idLavorazioni}">
-        
-        <button type="submit">Accetta Preventivo</button>
-    </form>
+    <!-- Inclusione del frammento usando la nuova sintassi -->
+    <div class="container">
+        <!-- Inserisce il frammento del header -->
+        <div th:insert="~{fragments/header :: block-header}"></div>
+    </div>
+
+    <div class="container mt-5">
+        <!-- Card per il preventivo -->
+        <div class="card custom-card">
+            <div class="card-header text-center bg-dark text-white">
+                <h1>Preventivo per <span th:text="${utente.nome.toUpperCase()}"></span></h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Tipo di lavoro: <span th:text="${tipoLavoro}"></span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Lista di lavorazioni</h6>
+                <p class="card-text">ID lavorazioni selezionate: <span th:text="${idLavorazioni}"></span></p>
+
+                <!-- Itera attraverso ogni entry della mappa delle quantità selezionate -->
+                <ul class="list-group mb-3">
+                    <li class="list-group-item" th:each="quantita : ${quantitaSelezionate}">
+                        <!-- Stampa la chiave e il valore della mappa -->
+                        <strong>ID Lavorazione:</strong> <span th:text="${quantita.key}"></span>, 
+                        <strong>Quantità:</strong> <span th:text="${quantita.value}"></span>
+                    </li>
+                </ul>
+
+                   <!-- Form per accettare il preventivo -->
+                <form action="/preventivo/accetta" method="post">
+                    <!-- Campi nascosti per inviare i parametri -->
+                    <input type="hidden" name="utenteNome" th:value="${utente.nome}">
+                    <input type="hidden" name="tipoLavoro" th:value="${tipoLavoro}">
+                    <input type="hidden" name="idLavorazioni" th:value="${idLavorazioni}">
+
+                    <!-- Bottone per accettare il preventivo -->
+                    <button type="submit" class="btn btn-primary btn-block">Accetta Preventivo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Includi i JS di Bootstrap e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

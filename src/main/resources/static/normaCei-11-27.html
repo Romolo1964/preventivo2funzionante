@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norma CEI 11-27</title>
+    <!-- Includi i CSS di Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+
+<body style="background-color: #e1feff;"> 
+    <nav class="navbar navbar-expand-lg navbar-light"
+			style="background-color: rgb(192, 191, 188); border-radius: 30px; overflow: hidden; display: flex; justify-content: center; padding: 10px;">
+			
+			 <div class="header-logo">
+				<a class="navbar-brand" href="/"> <img src="/img/logo.png" 
+					alt="Logo" class="img-fluid"
+					style="max-width: 50px; margin-right: 10px;">FR
+				</a>
+			</div>
+			
+			<div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+						<button id="btnPreventivo"
+						 	class="btn btn-primary btn-sm"
+							
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/preventivo/selezionaUtente'">PREVENTIVO</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-primary btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/utenti'">Lista Utenti</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-success btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/utenti/new'">Registrazione
+							Utente</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-danger btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavori-elettrici'">Lavori
+							Elettrici</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-warning btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavori-edili'">Lavori
+							Edili</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-info btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavoriManutenzione'">Lavori
+							di Manutenzione</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-secondary btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavoriRestauro'">Lavori
+							di Restauro</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-dark btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavoriTecnologici/list'">Lavori
+							Tecnologici</button>
+					</li>
+				</ul>
+			</div>
+
+		</nav>
+
+    
+
+    <!-- Contenuto principale -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Norma CEI 11-27</h1>
+
+        <!-- Descrizione generale -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                Descrizione Generale
+            </div>
+            <div class="card-body">
+                <p>La norma CEI 11-27 fornisce le linee guida per l'esecuzione sicura dei lavori su impianti elettrici e per la protezione delle persone che operano su, o vicino a, impianti elettrici.</p>
+                <p>Essa si applica a una vasta gamma di contesti, dai lavori di manutenzione alle operazioni di installazione e modifica su impianti elettrici in bassa, media e alta tensione.</p>
+            </div>
+        </div>
+
+        <!-- Sezioni principali -->
+        <div class="row">
+            <!-- Scopo e Campo di Applicazione -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Scopo e Campo di Applicazione
+                    </div>
+                    <div class="card-body">
+                        <p>La norma stabilisce i requisiti di sicurezza necessari per l'esecuzione di lavori su impianti elettrici o in prossimità degli stessi.</p>
+                        <p>Si applica a lavori in BT, MT e AT, compresi lavori fuori tensione, sotto tensione e in prossimità di parti attive.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Definizioni e Terminologia -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Definizioni e Terminologia
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>PES:</strong> Persona Esperta.</li>
+                            <li><strong>PAV:</strong> Persona Avvertita.</li>
+                            <li><strong>PEI:</strong> Persona Idonea.</li>
+                            <li><strong>Lavori Fuori Tensione:</strong> Operazioni su impianti messi fuori tensione.</li>
+                            <li><strong>Lavori Sotto Tensione:</strong> Operazioni su parti attive sotto tensione.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Altre Sezioni -->
+        <div class="row">
+            <!-- Organizzazione del Lavoro -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Organizzazione del Lavoro
+                    </div>
+                    <div class="card-body">
+                        <p>La pianificazione dei lavori elettrici deve includere la valutazione dei rischi, la definizione dei ruoli e la preparazione di piani di emergenza.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formazione e Qualifica del Personale -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-warning text-white">
+                        Formazione e Qualifica del Personale
+                    </div>
+                    <div class="card-body">
+                        <p>Il personale deve essere adeguatamente formato e qualificato. Le categorie principali includono PES, PAV e PEI.</p>
+                        <p>La formazione deve essere documentata e aggiornata periodicamente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer della pagina -->
+        <div th:insert="fragments/footer :: footer"></div>
+    </div>
+
+    <!-- Includi i JS di Bootstrap e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Stile personalizzato per il footer */
+        .footer {
+            background-color: #343a40; /* Colore di sfondo scuro */
+            color: #ffffff; /* Colore del testo bianco */
+            padding: 20px 0; /* Spaziatura superiore e inferiore */
+            text-align: center; /* Allineamento al centro */
+            border-top-left-radius: 20px; /* Bordo arrotondato in alto a sinistra */
+            border-top-right-radius: 20px; /* Bordo arrotondato in alto a destra */
+            border-bottom: 2px solid #ffffff; /* Bordo inferiore bianco */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra per maggiore contrasto */
+            margin-top: 30px; /* Spaziatura superiore per distanziarlo dal contenuto */
+        }
+
+        .footer-container {
+            border-radius: 15px; /* Bordo arrotondato per il contenitore */
+            background-color: rgba(0, 0, 0, 0.7); /* Sfondo semi-trasparente per il contenitore del testo */
+            padding: 15px; /* Spaziatura interna */
+        }
+    </style>
 </head>
 <body>
-<footer th:fragment="footer" class="footer" style="background-color: #343a40; color: #ffffff; padding: 20px 0; text-align: center;">
-    <div class="container">
-        <span>© 2024 MyApp. SITO DI ROMOLO FIORENZA - Tutti i diritti riservati.</span>
-    </div>
-</footer>
+    <footer th:fragment="footer" class="footer">
+        <div class="container footer-container">
+            <span>© 2024 MyApp. SITO DI ROMOLO FIORENZA - Tutti i diritti riservati.</span>
+        </div>
+    </footer>
 
+    <!-- Includi i JS di Bootstrap e dipendenze -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -54,8 +54,11 @@
                 
                 <div class="card-body">
                     <h5 class="card-title">Titolo Articolo 1</h5>
+                    
                     <p class="card-text">La norma CEI 11-27 "Lavori su impianti elettrici" è la norma tecnica di riferimento per tutte le attività di lavoro sugli impianti elettrici, che sono normate dal D. Lgs. 81/2008 in particolare dagli Artt. 82 (lavori sotto tensione) e 83 (Lavori in prossimità di parti attive) e ne rimandano l'applicazione.</p>
-                    <a href="#" class="btn btn-primary">Leggi di più</a>
+                    <!-- Pulsante "Leggi di più" che punta alla pagina statica "norme" -->
+                 <!--    <a th:href="@{/normaCei-11-27}" class="btn btn-primary">Leggi di più</a>-->
+                     <a href="/normaCei-11-27.html" class="btn btn-primary">Leggi di più</a>
                 </div>
             </div>
         </div>
@@ -65,7 +68,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Titolo Articolo 2</h5>
                     <p class="card-text">Breve descrizione dell'articolo 2.</p>
-                    <a href="#" class="btn btn-primary">Leggi di più</a>
+                    <!-- Pulsante "Leggi di più" che punta alla pagina statica "norme" -->
+                    <a th:href="@{/normaCei-11-27}" class="btn btn-primary">Leggi di più</a>
                 </div>
             </div>
         </div>
