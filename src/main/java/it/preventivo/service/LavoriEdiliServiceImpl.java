@@ -35,6 +35,12 @@ public class LavoriEdiliServiceImpl implements LavoriEdiliService {
     public void deleteById(long id) {
         repository.deleteById(id);
     }
+    
+    // Metodo per trovare lavori per un insieme di ID
+	@Override
+	public Object findLavoriByIds(List<Long> idLavorazioni) {		
+		return repository.findAllById(idLavorazioni);
+	}
 
 //	@Override
 //	public Object findLavoriByIds(List<Long> idLavorazioni) {
@@ -47,8 +53,8 @@ public class LavoriEdiliServiceImpl implements LavoriEdiliService {
      * @param idLavorazioni Lista degli ID dei lavori da cercare.
      * @return Lista di lavori edili corrispondenti agli ID forniti.
      */
-    @Override
-    public List<LavoriEdili> findLavoriByIds(List<Long> idLavorazioni) {
-        return repository.findByIdIn(idLavorazioni);
-    }
+//    @Override
+//    public List<LavoriEdili> findLavoriByIds(List<Long> idLavorazioni) {
+//        return repository.findByIdIn(idLavorazioni);
+//    }
 }

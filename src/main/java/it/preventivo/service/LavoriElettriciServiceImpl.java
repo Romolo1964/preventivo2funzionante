@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import it.preventivo.entity.LavoriElettrici;
+import it.preventivo.entity.LavoriRestauro;
 import it.preventivo.repository.LavoriElettriciRepository;
 
 /**
@@ -51,8 +52,12 @@ public class LavoriElettriciServiceImpl  {
      * @param idLavorazioni Lista degli ID dei lavori da cercare.
      * @return Lista di lavori elettrici corrispondenti agli ID forniti.
      */
-    //@Override
+ // Metodo per trovare lavori per un insieme di ID
     public List<LavoriElettrici> findLavoriByIds(List<Long> idLavorazioni) {
-        return repository.findByIdIn(idLavorazioni);
+        return repository.findAllById(idLavorazioni);
     }
+    
+    
+    
+    
 }	

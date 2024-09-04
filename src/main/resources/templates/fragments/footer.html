@@ -17,18 +17,23 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra per maggiore contrasto */
             margin-top: 30px; /* Spaziatura superiore per distanziarlo dal contenuto */
         }
-
+		.footer-di {
+		border-radius: 40px; /* Bordo arrotondato per il contenitore */
+		background-color: rgba(0, 0, 0, 0.1);
+		}
         .footer-container {
-            border-radius: 15px; /* Bordo arrotondato per il contenitore */
-            background-color: rgba(0, 0, 0, 0.7); /* Sfondo semi-trasparente per il contenitore del testo */
-            padding: 15px; /* Spaziatura interna */
+            border-radius: 40px; /* Bordo arrotondato per il contenitore */
+            background-color: rgba(0, 0, 0, 0.1); /* Sfondo semi-trasparente per il contenitore del testo */
+            padding: 30px; /* Spaziatura interna */
         }
     </style>
 </head>
 <body>
     <footer th:fragment="footer" class="footer">
-        <div class="container footer-container">
-            <span>© 2024 MyApp. SITO DI ROMOLO FIORENZA - Tutti i diritti riservati.</span>
+    <div class="footer-di">
+        <div class="container footer-container ">
+            <span style="background-color: rgb(192, 191, 188); position: center">© 2024 MyApp. SITO DI ROMOLO FIORENZA - Tutti i diritti riservati.</span>
+        </div>
         </div>
     </footer>
 

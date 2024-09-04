@@ -17,6 +17,7 @@ import it.preventivo.service.LavoriElettriciServiceImpl;
 import it.preventivo.service.LavoriManutenzioneService;
 import it.preventivo.service.LavoriRestauroService;
 import it.preventivo.service.LavoriTecnologiciService;
+import it.preventivo.service.PreventivoServiceImpl;
 import it.preventivo.service.PreventivoServiceNOOOO;
 import it.preventivo.service.UtenteService;
 
@@ -71,7 +72,7 @@ public class PreventivoController {
     private LavoriRestauroService lavoriRestauroService;
     
     @Autowired
-    private PreventivoServiceNOOOO preventivoService;
+    private PreventivoServiceImpl preventivoService;
     
     @GetMapping("/selezionaUtente")
     public String selezionaUtente(Model model) {
@@ -166,15 +167,19 @@ public class PreventivoController {
 //     // Otteniamo la lista delle chiavi
         System.out.println("-----------------------------------------------------------------");
         System.out.println("Stampa delle chiavi della mappa delle quantità:");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------");
+        // Iteriamo le chiavi della mappa delle quantità
         for (String key : quantita.keySet()) {
            // System.out.println(key);
         }
-        System.out.println("-----------------------------------------------------------------");
-        System.out.println("-----------------------------------------------------------------");
+        
         List<String> listaChiavi = new ArrayList<>(quantita.keySet());
      // Stampiamo la lista delle chiavi
         System.out.println("Lista delle chiavi: " + listaChiavi);
         System.out.println("Numero delle chiavi: " +listaChiavi.size());
+        System.out.println("utenteId è:"+utenteId);
+        System.out.println("tipoLavoro è:"+tipoLavoro);
         System.out.println("idLavorazioni:"+idLavorazioni);
       
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -242,26 +247,30 @@ public class PreventivoController {
         model.addAttribute("tipoLavoro", tipoLavoro);
         
         
-     // Seleziona la lista giusta di lavori in base al tipoLavoro
+     // Seleziona la lista giusta di lavori in base al tipoLavoro e ritorno la lista dei lavori selezionati.
         switch (tipoLavoro.toLowerCase()) {
             case "lavori_edili":
-                model.addAttribute("lavori", lavoriEdiliService.findLavoriByIds(idLavorazioni));
+               model.addAttribute("lavori", lavoriEdiliService.findLavoriByIds(idLavorazioni));
                 break;
             case "lavori_elettrici":
                 model.addAttribute("lavori", lavoriElettriciService.findLavoriByIds(idLavorazioni));
                 break;
             case "lavori_tecnologici":
                 model.addAttribute("lavori", lavoriTecnologiciService.findLavoriByIds(idLavorazioni));
+                System.out.println("lavori_tecnologici"+(lavoriTecnologiciService.findLavoriByIds(idLavorazioni)));
                 break;
             case "lavori_di_restauro":
 	           	model.addAttribute("lavori", lavoriRestauroService.findLavoriByIds(idLavorazioni));
+	           	System.out.println("lavori"+(lavoriRestauroService.findLavoriByIds(idLavorazioni)));
 	            break;
             case "lavori_manutenzione":
                	model.addAttribute("lavori", lavoriManutenzioneService.findLavoriByIds(idLavorazioni));
+               	System.out.println("lavori_manutenzione"+(lavoriManutenzioneService.findLavoriByIds(idLavorazioni)));
                 break;
             
             default:
                 model.addAttribute("errore", "Tipo di lavoro non valido.");
+                
                 // Ritorna alla vista di selezione con un messaggio di errore
                 return "seleziona_utente"; // Modifica con il nome della tua vista di selezione se necessario
         }
@@ -274,13 +283,27 @@ public class PreventivoController {
 //        model.addAttribute("preventivo", preventivo);
 
         // Ritorna alla vista di visualizzazione del preventivo
+        System.out.println("sto andando a visualizza preventivo");
         return "visualizza_preventivo";
     }
 
     @PostMapping("/accetta")
-    public String accettaPreventivo(@RequestParam Long preventivoId, Model model) {
-        Preventivo preventivo = preventivoService.accettaPreventivo(preventivoId);
-        model.addAttribute("preventivo", preventivo);
+    public String accettaPreventivo(
+    		//@RequestParam Long idUtente,
+    		@RequestParam String utenteNome,
+    		@RequestParam String tipoLavoro,
+    		@RequestParam List<String> idLavorazioni,     		
+    		@RequestParam Map<String, String> quantitaSelezionate,
+       		Model model) {
+    	//model.addAttribute("idUtente", idUtente);
+    	model.addAttribute("utenteNome", utenteNome);
+    	model.addAttribute("tipoLavoro", tipoLavoro);
+    	model.addAttribute("idLavorazioni", idLavorazioni);
+    	model.addAttribute("quantitaSelezionate", quantitaSelezionate);
+    	
+    	
+//        Preventivo preventivo = preventivoService.accettaPreventivo();
+//        model.addAttribute("preventivo", preventivo);
         return "preventivo_accettato";
     }
     

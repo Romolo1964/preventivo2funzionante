@@ -18,6 +18,12 @@ import jakarta.persistence.Table;
 @Table(name="lavori_elettrici")
 @NamedQuery(name="LavoriElettrici.findAll", query="SELECT l FROM LavoriElettrici l")
 public class LavoriElettrici implements Serializable {
+	@Override
+	public String toString() {
+		return "LavoriElettrici [id=" + id + ", codice=" + codice + ", descrizione=" + descrizione + ", prezzo="
+				+ prezzo + ", quantitaMisuraPezzi=" + quantitaMisuraPezzi + ", sigla=" + sigla + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -36,7 +36,7 @@ public class PreventivoServiceNOOOO {
                 .orElseThrow(() -> new RuntimeException("Utente non trovato"));
 
         Preventivo preventivo = new Preventivo();
-        preventivo.setUtente(utente);
+       // preventivo.setUtente(utente);
        // preventivo.setStato(Preventivo.CREATO);
 
         double totale = 0.0;
@@ -49,10 +49,10 @@ public class PreventivoServiceNOOOO {
             LavorazioniPreventivo lavorazioniPreventivo = new LavorazioniPreventivo();
             lavorazioniPreventivo.setPreventivo(preventivo);
             lavorazioniPreventivo.setLavorazione(lavorazione);
-            lavorazioniPreventivo.setCosto(lavorazione.getCosto());
+        //  lavorazioniPreventivo.setCosto(lavorazione.getCosto());
             lavorazioniPreventivoRepository.save(lavorazioniPreventivo);
 
-            totale += lavorazione.getCosto();
+        //  totale += lavorazione.getCosto();
         }
 
         preventivo.setTotale(totale);

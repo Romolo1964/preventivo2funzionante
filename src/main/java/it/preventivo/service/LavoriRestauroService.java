@@ -31,8 +31,8 @@ public class LavoriRestauroService {
         lavoriRestauroRepository.deleteById(id);
     }
 
-	public Object findLavoriByIds(List<Long> idLavorazioni) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    // Metodo per trovare lavori per un insieme di ID
+    public List<LavoriRestauro> findLavoriByIds(List<Long> idLavorazioni) {
+        return lavoriRestauroRepository.findAllById(idLavorazioni);
+    }
 }

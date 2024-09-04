@@ -27,4 +27,5 @@ public interface PreventivoService {
     List<Preventivo> getPreventiviOrderByTotaleDesc(); // Ottieni preventivi ordinati per totale
     List<Preventivo> getPreventiviByDateRange(LocalDate startDate, LocalDate endDate); // Filtra per intervallo di date
 	List<Preventivo> findPreventiviByDateRange(LocalDateTime startDate, LocalDateTime endDate);
+	Preventivo creaPreventivo(Long idUtente, String tipoLavoro, List<Long> idsLavorazioni);
 }

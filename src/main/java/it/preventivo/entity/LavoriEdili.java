@@ -18,6 +18,12 @@ import jakarta.persistence.Table;
 @Table(name="lavori_edili")
 @NamedQuery(name="LavoriEdili.findAll", query="SELECT l FROM LavoriEdili l")
 public class LavoriEdili implements Serializable {
+	@Override
+	public String toString() {
+		return "LavoriEdili [id=" + id + ", codice=" + codice + ", descrizione=" + descrizione + ", prezzo=" + prezzo
+				+ ", quantitaMisuraPezzi=" + quantitaMisuraPezzi + ", sigla=" + sigla + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,6 +36,7 @@ public class LavoriEdili implements Serializable {
     private String descrizione;
 
 	//@Lob
+	@Column(name = "prezzo")
 	private double prezzo;
 
 	@Lob

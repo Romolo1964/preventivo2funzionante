@@ -22,7 +22,8 @@
     </style>
 </head>
 <body>
-<div th:insert="fragments/header :: block-header"></div>
+<!-- Header della pagina -->
+    <div th:insert="~{fragments/header :: block-header}"></div>
 
 <div style="margin-top: 30px"></div>
    <!-- Seleziona un utente e crea un preventivo -->
@@ -68,8 +69,11 @@
             
         </div>
     </div>
+    
 </div>
-
+<!-- Footer della pagina -->
+    <div th:insert="~{fragments/footer :: footer}"></div>
+    
     <!-- Includi Bootstrap JS e dipendenze (opzionale se usi funzionalità JS di Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crea Preventivo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Ingrandire il testo del menu a tendina */
+        .form-control {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Imposta una larghezza maggiore per il campo select */
+        #lavorazioni {
+            width: 100%;
+            max-width: 1400px;
+            white-space: nowrap;
+            overflow-x: auto; /* Aggiunge lo scorrimento orizzontale se necessario */
+        }
+
+        /* Alternare il colore delle opzioni */
+        #lavorazioni option:nth-child(odd) {
+            background-color: #f0f0f0;
+        }
+
+        #lavorazioni option:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        /* Evidenziare l'opzione selezionata */
+        #lavorazioni option:checked {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        /* Stile per ingrandire e arrotondare la card */
+        .card {
+            width: 120%; /* Aumenta la larghezza della card al 80% del contenitore */
+            max-width: 1980px; /* Imposta una larghezza massima per la card */
+            margin: 10px auto; /* Centra la card e aggiunge margini verticali */
+            border-radius: 15px; /* Arrotonda i bordi della card */
+            border: 2px solid #333; /* Bordo della card */
+        }
+    </style>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: block-header}"></div>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3>Crea Nuovo Preventivo</h3>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/preventiviNuovo/save}" th:object="${preventivo}" method="post">
+                    <!-- Campo Utente -->
+                    <div class="form-group">
+                        <label for="utente">Utente</label>
+                        <select class="form-control" name="utenteId" id="utente">
+                            <option value="">-- Seleziona Utente --</option>
+                            <option th:each="utente : ${utenti}" 
+                                    th:value="${utente.idutente}" 
+                                    th:text="'idutente=' + ${utente.idutente} + ' Nome Utente=' + ${utente.nome}">
+                            </option>  
+                        </select>
+                    </div>
+
+                    <!-- Campo Stato -->
+                    <div class="form-group">
+                        <label for="stato">Stato</label>
+                        <select class="form-control" id="stato" name="stato">
+                            <option value="CREATO">Creato</option>
+                            <option value="IN_ATTESA">In Attesa</option>
+                            <option value="CONFERMATO">Confermato</option>
+                            <option value="CANCELLATO">Cancellato</option>
+                        </select>
+                    </div>
+
+                    <!-- Campo Selezione Multiple di Lavorazioni -->
+                    <div class="form-group">
+                        <label for="lavorazioni">Lavorazioni</label>
+                        <select class="form-control" id="lavorazioni" name="lavorazioni" multiple>
+                            <option th:each="lavorazione : ${lavorazioni}" 
+                                    th:value="${lavorazione.id}" 
+                                    th:text="${lavorazione.descrizione} + '  - Costo Unitario : ' + ${lavorazione.costounitario} + ' EUR'">
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Pulsante di Invio -->
+                    <button type="submit" class="btn btn-success">Salva Preventivo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div th:insert="~{fragments/footer :: footer}" class="mt-5"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

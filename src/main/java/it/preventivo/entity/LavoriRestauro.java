@@ -91,4 +91,10 @@ public class LavoriRestauro implements Serializable {
 		this._sigla = _sigla;
 	}
 
+	@Override
+	public String toString() {
+		return "LavoriRestauro [id=" + id + ", codice=" + codice + ", descrizione=" + descrizione + ", prezzo=" + prezzo
+				+ ", quantitaMisuraPezzi=" + quantitaMisuraPezzi + ", _sigla=" + _sigla + "]";
+	}
+
 }

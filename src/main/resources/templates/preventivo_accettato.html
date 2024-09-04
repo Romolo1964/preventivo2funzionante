@@ -3,11 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Preventivo Accettato</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Preventivo Accettato</h1>
-    <p>Il preventivo per <span th:text="${preventivo.utente.nome}"></span> è stato accettato con successo.</p>
-    <p>Totale: €<span th:text="${preventivo.totale}"></span></p>
-    <a href="#" th:href="@{/preventivo/selezionaUtente}">Torna alla Selezione Utente</a>
+    <div class="container mt-5">
+        <div class="card" style="border: 2px solid #333; border-radius: 10px;">
+            <div class="card-header bg-success text-white">
+                <h3>Preventivo Accettato</h3>
+            </div>
+            <div class="card-body">
+                <!-- Informazioni dell'Utente -->
+                <h5><strong>Utente:</strong> <span th:text="${utenteNome}"></span></h5>
+                <h5><strong>Tipo di Lavoro:</strong> <span th:text="${tipoLavoro}"></span></h5>
+				<h5><strong>Lavori selezionati:</strong> <span th:text="${quantita}"></span></h5>
+				
+				<!-- Itera attraverso ogni entry della mappa delle quantità selezionate -->
+                <ul class="list-group mb-3">
+                    <li class="list-group-item" th:each="quantita : ${quantitaSelezionate}">
+                        <!-- Stampa la chiave e il valore della mappa -->
+                        <strong>ID Lavorazione:</strong> <span th:text="${quantita.key}"></span>, 
+                        <strong>Quantità:</strong> <span th:text="${quantita.value}"></span>
+                    </li>
+                </ul>
+                      <ul class="list-group mb-3">
+                    <!-- Itera attraverso la mappa delle quantità selezionate -->
+                    <li class="list-group-item" th:each="lavoro : ${lavori}">
+                        <!-- Stampa la chiave (ID Lavorazione) e il valore (Quantità) -->
+                        <strong>ID Lavorazione:</strong> <span th:text="${entry.key}"></span>, 
+                        <strong>Quantità:</strong> <span th:text="${entry.value}"></span>
+                    </li>
+                </ul>  
+                <!-- Elenco delle Lavorazioni e Quantità -->
+                <h5 class="mt-4">Lavorazioni Accettate</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Descrizione Lavorazione</th>
+                            <th>Quantità</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="lavoro : ${lavori}">
+                            <td th:text="${idLavorazione}">Lavorazione Descrizione</td>
+                            <td th:text="${quantitaSelezionate[descrizione]}">Quantità</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Bottone per Tornare alla Home o Continuare -->
+                <div class="mt-4">
+                    <a href="/" class="btn btn-primary">Torna alla Home</a>
+                    <a href="/preventivi/crea" class="btn btn-secondary">Crea Nuovo Preventivo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -11,9 +11,10 @@
 		<nav class="navbar navbar-expand-lg navbar-light"
 			style="background-color: rgb(192, 191, 188); border-radius: 30px; overflow: hidden; display: flex; justify-content: center; padding: 10px;">
 			
-			 <div class="header-logo">
+			 <div class="header-logo" id="logo" >
 				<a class="navbar-brand" href="/"> <img th:src="@{/img/logo.png}"
 					alt="Logo" class="img-fluid"
+					title="Applicazione sviluppata da [Nome dell'impresa]. Per maggiori informazioni, visita il nostro sito."
 					style="max-width: 50px; margin-right: 10px;">FR
 				</a>
 			</div>
@@ -73,6 +74,16 @@
 							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
 							onclick="window.location.href='/lavoriTecnologici/list'">Lavori
 							Tecnologici</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-warning btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/lavorazioni'">Lavorazioni</button>
+					</li>
+					<li class="nav-item">
+						<button class="btn btn-warning btn-sm"
+							style="border-radius: 25px; border: 2px solid black; margin: 3px;"
+							onclick="window.location.href='/preventiviNuovo/crea'">/preventiviNuovo/crea</button>
 					</li>
 				</ul>
 			</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifica Lavorazione</title>
+    <!-- Inclusione del CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Stile per lo sfondo e il bordo della card */
+        body {
+            background-color: #f0f8ff; /* Azzurro chiaro come sfondo della pagina */
+        }
+
+        .custom-card {
+            border: 10px solid #007bff; /* Bordo spesso della card con colore blu */
+            border-radius: 30px; /* Bordo arrotondato */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+	<!-- Inclusione del frammento usando la nuova sintassi -->
+   <div th:insert="~{fragments/header :: block-header}"></div>
+   
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Card per l'aggiornamento della lavorazione -->
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Modifica Lavorazione</h2>
+                        <!-- Form per aggiornare la lavorazione -->
+                        <form th:action="@{/lavorazioni/modifica/{id}(id=${lavorazione.id})}" th:object="${lavorazione}" method="post">
+                            <div class="form-group">
+                                <label for="descrizione">Descrizione:</label>
+                                <input type="text" id="descrizione" name="descrizione" class="form-control" th:field="*{descrizione}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="costo">Costo:</label>
+                                <input type="number" id="costo" name="costo" class="form-control" th:field="*{costo}" step="0.01" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Aggiorna</button>
+                                <a th:href="@{/lavorazioni}" class="btn btn-secondary">Annulla</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div th:insert="~{fragments/footer :: footer}"></div>
+    <!-- Inclusione dei JavaScript di Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
