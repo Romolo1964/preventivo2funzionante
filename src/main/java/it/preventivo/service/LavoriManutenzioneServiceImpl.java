@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.preventivo.entity.LavoriManutenzione;
+import it.preventivo.entity.LavoriRestauro;
 import it.preventivo.repository.LavoriManutenzioneRepository;
 
 @Service
@@ -35,10 +36,10 @@ public class LavoriManutenzioneServiceImpl implements LavoriManutenzioneService 
         lavoriManutenzioneRepository.deleteById(id);
     }
 
-	@Override
-	public Object findLavoriByIds(List<Long> idLavorazioni) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	// Metodo per trovare lavori per un insieme di ID
+    public List<LavoriManutenzione> findLavoriByIds(List<Long> idLavorazioni) {
+        return lavoriManutenzioneRepository.findAllById(idLavorazioni);
+    }
 }
 

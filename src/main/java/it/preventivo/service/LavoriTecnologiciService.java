@@ -33,6 +33,6 @@ public class LavoriTecnologiciService {
 
 	public Object findLavoriByIds(List<Long> idLavorazioni) {
 		// TODO Auto-generated method stub
-		return null;
+		return lavoriTecnologiciRepository.findAllById(idLavorazioni);
 	}
 }

@@ -15,6 +15,7 @@ import it.preventivo.service.LavoriEdiliService;
 import it.preventivo.service.LavoriElettriciServiceImpl;
 import it.preventivo.service.LavoriElettriciServiceImpl;
 import it.preventivo.service.LavoriManutenzioneService;
+import it.preventivo.service.LavoriManutenzioneServiceImpl;
 import it.preventivo.service.LavoriRestauroService;
 import it.preventivo.service.LavoriTecnologiciService;
 import it.preventivo.service.PreventivoServiceImpl;
@@ -64,6 +65,8 @@ public class PreventivoController {
     
     @Autowired    
     private LavoriManutenzioneService lavoriManutenzioneService;
+    @Autowired 
+    private LavoriManutenzioneServiceImpl lavoriManutenzioneServiceImpl;
     
     @Autowired    
     private LavoriTecnologiciService lavoriTecnologiciService;
